@@ -1,0 +1,140 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Tabla de Registros</title>
+      <style>
+          .registro {
+              border: 1px solid #ccc;
+              padding: 5px;
+              margin: 5px;
+          }
+          .izquierda {
+              float: left;
+              width: 48%;
+          }
+          .derecha {
+              float: right;
+              width: 48%;
+          }
+      </style>
+  </head>
+  <body>
+    <div>
+      <input type="text" id="nombreInput" placeholder="Nombre">
+      <button onclick="agregarRegistro()">Agregar</button>
+  </div>
+
+      <div class="izquierda">
+          <h2>Registros a la Izquierda</h2>
+          <table>
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                  </tr>
+              </thead>
+              <tbody id="tablaIzquierda">
+                  <!-- Espacio para 20 registros a la izquierda -->
+              </tbody>
+          </table>
+      </div>
+      <div class="derecha">
+          <h2>Registros a la Derecha</h2>
+          <table>
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                  </tr>
+              </thead>
+              <tbody id="tablaDerecha">
+                  <!-- Espacio para 20 registros a la derecha -->
+              </tbody>
+          </table>
+      </div>
+  
+      <!-- Formulario para agregar registros -->
+   
+  
+      <script>
+          var contadorIzquierda = 0;
+          var contadorDerecha = 0;
+  
+          function agregarRegistro() {
+              var nombre = document.getElementById("nombreInput").value;
+  
+              if (nombre.trim() === "") {
+                  alert("Por favor, ingrese un nombre válido.");
+                  return;
+              }
+  
+              if (contadorIzquierda < 20) {
+                  contadorIzquierda++;
+                  agregarRegistroEnTabla("tablaIzquierda", contadorIzquierda, nombre);
+              } else if (contadorDerecha < 20) {
+                  contadorDerecha++;
+                  agregarRegistroEnTabla("tablaDerecha", contadorDerecha, nombre);
+              } else {
+                  alert("Se han alcanzado 20 registros en ambas partes.");
+              }
+          }
+  
+          function agregarRegistroEnTabla(tablaId, id, nombre) {
+              var tablaBody = document.getElementById(tablaId);
+              var newRow = document.createElement("tr");
+              newRow.innerHTML = `
+                  <td>${id}</td>
+                  <td>${nombre}</td>
+              `;
+              tablaBody.appendChild(newRow);
+          }
+      </script>
+  
+  
+
+
+
+
+
+
+ <!--  <input type="text" id="miInput" onkeydown="capturarEnter(event)">
+  <script>
+      function capturarEnter(event) {
+          if (event.key === "Enter") {
+              var input = document.getElementById("miInput");
+              var contenido = input.value;
+              alert("El contenido del input es: " + contenido);
+          }
+      }
+  </script> -->
+  
+  
+
+
+
+
+
+<!-- <p>Cuando ingresa al campo de entrada (secundario de FORM), se activa una función que establece el color de fondo en amarillo. Cuando abandona el campo de entrada, se activa una función que elimina el color de fondo..</p>
+<form id="myForm">
+  <input type="text" id="myInput" autofocus>
+</form>
+
+<script>
+var x = document.getElementById("myForm");
+x.addEventListener("focus", myFocusFunction, true);
+x.addEventListener("blur", myBlurFunction, true);
+
+function myFocusFunction() {
+  document.getElementById("myInput").style.backgroundColor = "yellow"; 
+} 
+
+function myBlurFunction() {
+  document.getElementById("myInput").style.backgroundColor = "red"; 
+}
+
+</script> -->
+</body>
+</html>
